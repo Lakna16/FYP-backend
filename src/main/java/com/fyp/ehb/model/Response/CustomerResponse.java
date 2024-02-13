@@ -1,4 +1,4 @@
-package com.fyp.ehb.model;
+package com.fyp.ehb.model.Response;
 
 public class CustomerResponse {
 
