@@ -1,4 +1,7 @@
 package com.fyp.ehb.repository;
 
-public class BusinessDaoImpl {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class BusinessDaoImpl implements BusinessDao {
 }

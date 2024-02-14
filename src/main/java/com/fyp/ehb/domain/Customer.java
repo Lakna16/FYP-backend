@@ -1,30 +1,33 @@
 package com.fyp.ehb.domain;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
+@NoArgsConstructor
 @Document(collection = "customers")
 public class Customer {
 
     @Id
-    private String userAccountId;
+    private String id;
 
-    @NotBlank
+    private String name;
+
     private String username;
 
-    @NotBlank
-    @Field("mobile_no")
-    private String mobileNo;
+    private String mobile;
 
     private String email;
 
-    @NotBlank
+    private String nic;
+
     private String password;
+
+    private String language;
 
     @Field("user_login_count")
     private int userLoginCount;
@@ -33,12 +36,5 @@ public class Customer {
     private int userPasswordResetCount;
 
     @DBRef
-    private Business businesses;
-
-    public Customer(String username, String mobileNo, String email, String password) {
-        this.username = username;
-        this.mobileNo = mobileNo;
-        this.email = email;
-        this.password = password;
-    }
+    private Business business;
 }

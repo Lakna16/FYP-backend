@@ -2,21 +2,16 @@ package com.fyp.ehb.controller;
 
 import com.fyp.ehb.domain.Customer;
 import com.fyp.ehb.model.Request.SignupRequest;
-import com.fyp.ehb.model.Response.GlobalResponse;
-import com.fyp.ehb.service.CustomerServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fyp.ehb.model.CustomerResponse;
+import com.fyp.ehb.model.Response.CustomerResponse;
 import com.fyp.ehb.model.MainResponse;
 import com.fyp.ehb.service.CustomerService;
 
@@ -28,26 +23,19 @@ public class CustomerController {
     private CustomerService customerService;
 
 	//registration
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerCustomer(@Valid @RequestBody SignupRequest signupRequest) throws Exception {
+    @PostMapping(value = "/signup")
+    public MainResponse registerCustomer(@Valid @RequestBody SignupRequest signupRequest) throws Exception {
 
         Customer customer = customerService.registerCustomer(signupRequest);
 
-        if (customer == null) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new GlobalResponse("999","Failed"));
-        }
-        else{
-            return ResponseEntity
-                    .ok()
-                    .body(new GlobalResponse("000", "Success"));
-        }
+        MainResponse mainResponse = new MainResponse();
+		mainResponse.setResponseCode("000");
+		mainResponse.setResponseObject(customer);
+
+		return mainResponse;
     }
 
-	
 	//login
-
 	@GetMapping(value="/login")
 	public MainResponse login(
 			@RequestParam(value="username", required=true) String username,
@@ -63,6 +51,4 @@ public class CustomerController {
 		return mainResponse;
 
 	}
-
-	//registration
 }

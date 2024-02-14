@@ -1,9 +1,8 @@
 package com.fyp.ehb.service;
 
-import com.fyp.ehb.model.CustomerResponse;
-
 import com.fyp.ehb.domain.Customer;
 import com.fyp.ehb.model.Request.SignupRequest;
+import com.fyp.ehb.model.Response.CustomerResponse;
 
 public interface CustomerService {
 
