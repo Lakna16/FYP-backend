@@ -1,4 +1,4 @@
-package com.fyp.ehb.model;
+package com.fyp.ehb.model.Response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
